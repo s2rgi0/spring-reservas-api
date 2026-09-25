@@ -3,6 +3,7 @@ package com.spring.reservas.api.service;
 import com.spring.reservas.api.dto.EspacioRequestDto;
 import com.spring.reservas.api.dto.EspacioResponseDto;
 import com.spring.reservas.api.entity.Espacio;
+import com.spring.reservas.api.exception.EntityNotFoundException;
 import com.spring.reservas.api.mapper.EspacioMapper;
 import com.spring.reservas.api.repository.EspacioRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,9 @@ public class EspacioServiceImpl implements EspacioService {
 
     @Override
     public EspacioResponseDto findById(long id) {
-        return null;
+        Espacio espacio = repo.findById( id )
+                .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
+        return EspacioMapper.mapToDto(espacio);
     }
 
     @Override
@@ -42,12 +45,25 @@ public class EspacioServiceImpl implements EspacioService {
     }
 
     @Override
-    public EspacioResponseDto updateEspacio(EspacioRequestDto espacioRequestDto) {
-        return null;
+    public EspacioResponseDto updateEspacio(Long id,EspacioRequestDto espacioRequestDto) {
+        Espacio espacio = repo.findById( id )
+                .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
+
+        espacio.setNombre(espacioRequestDto.getNombre());
+        espacio.setTipo(espacioRequestDto.getTipo());
+        espacio.setCapacidad(espacioRequestDto.getCapacidad());
+        espacio.setUbicacion(espacioRequestDto.getUbicacion());
+        espacio.setTarifaHora(espacioRequestDto.getTarifaHora());
+
+        return EspacioMapper.mapToDto(repo.save(espacio));
     }
 
     @Override
     public void deleteEspacio(long id) {
 
+        Espacio espacio = repo.findById( id )
+                .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
+
+        repo.delete(espacio);
     }
 }

@@ -35,7 +35,7 @@ public class EspacioController {
 
     @PutMapping("/{id}")
     ResponseEntity <EspacioResponseDto> actualizarEspacio(@PathVariable Long id, @Valid @RequestBody EspacioRequestDto espacioRequestDto) {
-        return ResponseEntity.ok(espacioService.updateEspacio(espacioRequestDto));
+        return ResponseEntity.ok(espacioService.updateEspacio(id, espacioRequestDto));
     }
 
     @GetMapping

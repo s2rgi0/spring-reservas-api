@@ -11,7 +11,7 @@ public interface EspacioService {
     EspacioResponseDto createEspacio(EspacioRequestDto espacioRequestDto);
     EspacioResponseDto findById(long id);
     List<EspacioResponseDto> findAll();
-    EspacioResponseDto updateEspacio(EspacioRequestDto espacioRequestDto);
+    EspacioResponseDto updateEspacio(Long id,EspacioRequestDto espacioRequestDto);
     void deleteEspacio(long id);
 
 }
