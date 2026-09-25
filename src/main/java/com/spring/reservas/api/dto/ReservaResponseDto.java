@@ -2,6 +2,7 @@ package com.spring.reservas.api.dto;
 
 import com.spring.reservas.api.entity.Espacio;
 import com.spring.reservas.api.entity.Usuario;
+import com.spring.reservas.api.enums.EstadoPago;
 import com.spring.reservas.api.enums.EstadoReserva;
 import lombok.*;
 
@@ -22,7 +23,7 @@ public class ReservaResponseDto {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
     private EstadoReserva estado;
-    private EstadoReserva estadoPago;
+    private EstadoPago estadoPago;
     private Usuario usuario;
     private Espacio espacio;
     private BigDecimal precio;

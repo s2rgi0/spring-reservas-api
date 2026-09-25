@@ -1,5 +1,6 @@
 package com.spring.reservas.api.entity;
 
+import com.spring.reservas.api.enums.EstadoPago;
 import com.spring.reservas.api.enums.EstadoReserva;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 @Entity
 @Table(name = "reservas")
 public class Reserva {
@@ -30,7 +30,7 @@ public class Reserva {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_pago", nullable = false)
-    private EstadoReserva estadoPago;
+    private EstadoPago estadoPago;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")

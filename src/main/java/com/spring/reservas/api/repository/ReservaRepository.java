@@ -26,5 +26,16 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     List<Reserva> findByEspacioId(Long id);
 
-    boolean existsByFechaInicio(Long id, LocalDateTime fechaInicio, LocalDateTime fechaFin);
+    @Query("SELECT COUNT(r) > 0 FROM Reserva r " +
+            "WHERE r.espacio.id = :espacioId " +
+            "AND r.fechaInicio < :fechaFin " +
+            "AND r.fechaFin > :fechaInicio " +
+            "AND r.estado NOT IN (:estadosIgnorados)")
+    boolean verificarSiEspacioEstaOcupado(
+            @Param("espacioId") Long espacioId,
+            @Param("fechaInicio") LocalDateTime fechaInicio,
+            @Param("fechaFin") LocalDateTime fechaFin,
+            @Param("estadosIgnorados") List<EstadoReserva> estadosIgnorados
+    );
+
 }

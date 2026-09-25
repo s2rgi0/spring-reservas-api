@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ReservaRequestDto {
 
     @NotBlank
-    private String idEspacio;
+    private Long idEspacio;
     @NotBlank
     private LocalDateTime fechaInicio;
     @NotBlank

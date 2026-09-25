@@ -7,8 +7,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.jspecify.annotations.Nullable;
 //import org.springframework.security.core.GrantedAuthority;
 
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class UsuarioRequestDto {
 
     @NotBlank
@@ -33,7 +36,8 @@ public class UsuarioRequestDto {
     @NotBlank(message = "El password es obligatorio")
     private String password;
 
-    @NotBlank(message = "El campo es obligatorio")
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Rol rol;
 
 }

@@ -4,8 +4,8 @@ import com.spring.reservas.api.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,11 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 @Entity
 @Table(name = "usuarios")
-public class Usuario  {
-//public class Usuario implements UserDetails {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +51,7 @@ public class Usuario  {
     private List<Reserva> reservations = new ArrayList<>();
 
 
-/*    @Override
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
     }
@@ -66,5 +64,5 @@ public class Usuario  {
     @Override
     public String getUsername() {
         return email;
-    }*/
+    }
 }

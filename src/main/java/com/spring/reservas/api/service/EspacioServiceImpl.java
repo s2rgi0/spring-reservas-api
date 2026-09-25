@@ -7,6 +7,7 @@ import com.spring.reservas.api.exception.EntityNotFoundException;
 import com.spring.reservas.api.mapper.EspacioMapper;
 import com.spring.reservas.api.repository.EspacioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ public class EspacioServiceImpl implements EspacioService {
     }
 
     @Override
+    @Transactional
     public EspacioResponseDto findById(long id) {
         Espacio espacio = repo.findById( id )
                 .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
@@ -36,6 +38,7 @@ public class EspacioServiceImpl implements EspacioService {
     }
 
     @Override
+    @Transactional
     public List<EspacioResponseDto> findAll() {
 
         return repo.findAll()
@@ -45,6 +48,7 @@ public class EspacioServiceImpl implements EspacioService {
     }
 
     @Override
+    @Transactional
     public EspacioResponseDto updateEspacio(Long id,EspacioRequestDto espacioRequestDto) {
         Espacio espacio = repo.findById( id )
                 .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
@@ -59,11 +63,11 @@ public class EspacioServiceImpl implements EspacioService {
     }
 
     @Override
+    @Transactional
     public void deleteEspacio(long id) {
 
         Espacio espacio = repo.findById( id )
                 .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
-
         repo.delete(espacio);
     }
 }
