@@ -61,7 +61,7 @@ public class ReservaServiceImpl implements ReservaService {
                 .verificarSiEspacioEstaOcupado(dto.getIdEspacio(), dto.getFechaInicio(), dto.getFechaFin(), estadosQueBloquean);
 
         if(estaOcupado) {
-            new RuntimeException("Espacio ocupado");
+            throw new RuntimeException("  Espacio ocupado  ");
         }
 
         Reserva reserva = new Reserva();
@@ -71,6 +71,10 @@ public class ReservaServiceImpl implements ReservaService {
         reserva.setFechaFin(dto.getFechaFin());
         reserva.setEstado(EstadoReserva.PENDIENTE);
         reserva.setEstadoPago(EstadoPago.PENDIENTE);
+
+        if (dto.getFechaFin().isBefore(dto.getFechaInicio())) {
+            throw new RuntimeException(" La fecha de fin no puede ser anterior a la fecha de inicio   ");
+        }
 
         long hours = java.time.Duration.between(dto.getFechaInicio(), dto.getFechaFin()).toHours();
         if (hours == 0) hours = 1;
@@ -96,7 +100,7 @@ public class ReservaServiceImpl implements ReservaService {
     public ReservaResponseDto findReserva(long id) {
 
         Reserva reserva = reservaRepo.findByIdWithAssociacion(id)
-                .orElseThrow(() -> new EntityNotFoundException("Reserva no encontrada"+id));
+                .orElseThrow(() -> new EntityNotFoundException("Reserva no encontrada :: "+id));
         return ReservaMapper.mapToDto(reserva);
 
     }
@@ -126,6 +130,8 @@ public class ReservaServiceImpl implements ReservaService {
 
         Reserva reserva = reservaRepo.findByIdWithAssociacion(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reserva no encontrada"+id));
+
+        System.out.println("reserva   :::::::: "+reserva.toString());
 
         // SÍ tiene permiso si es ADMIN O si es el dueño de la reserva
         boolean tienePermiso = "ADMIN".equals(usuario.getRol()) || reserva.getUsuario().getId().equals(usuario.getId());

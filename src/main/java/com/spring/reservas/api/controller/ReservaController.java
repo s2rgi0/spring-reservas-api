@@ -6,7 +6,6 @@ import com.spring.reservas.api.entity.Usuario;
 import com.spring.reservas.api.service.ReservaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -42,10 +41,9 @@ public class ReservaController {
 
         ReservaResponseDto reserva = reservaService.findReserva(id);
 
-        if(!"ADMIN".equals(usuario.getRol().name()) && reserva.getUsuario().getId().equals(usuario.getId()) ){
+        if(!"ADMIN".equals(usuario.getRol().name()) && reserva.getIdUsuario().equals(usuario.getId()) ){
             return ResponseEntity.ok(reserva);
         }
-
         return ResponseEntity.ok(reserva);
 
     }
@@ -53,7 +51,6 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteReserva(@PathVariable long id, @AuthenticationPrincipal Usuario usuario) {
-
 
         reservaService.deleteReserva(id, usuario);
         return ResponseEntity.ok("reservacion cancelada");

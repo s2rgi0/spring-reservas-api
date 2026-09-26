@@ -18,7 +18,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     @Query("SELECT r FROM Reserva r JOIN FETCH r.usuario JOIN FETCH r.espacio")
     List<Reserva> findAllWithAssociation();
 
-    @Query("SELECT r FROM Reserva r JOIN FETCH r.usuario JOIN FETCH r.espacio WHERE usuario.id = :id")
+    @Query("SELECT r FROM Reserva r JOIN FETCH r.usuario JOIN FETCH r.espacio WHERE r.usuario.id = :usuarioId")
     List<Reserva> findByUsuarioIdWithAssociacion(@Param("usuarioId") Long id);
 
     @Query("SELECT r FROM Reserva r JOIN FETCH r.usuario JOIN FETCH r.espacio WHERE r.id = :id")
@@ -30,7 +30,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
             "WHERE r.espacio.id = :espacioId " +
             "AND r.fechaInicio < :fechaFin " +
             "AND r.fechaFin > :fechaInicio " +
-            "AND r.estado NOT IN (:estadosIgnorados)")
+            "AND r.estado IN (:estadosIgnorados)")
     boolean verificarSiEspacioEstaOcupado(
             @Param("espacioId") Long espacioId,
             @Param("fechaInicio") LocalDateTime fechaInicio,
