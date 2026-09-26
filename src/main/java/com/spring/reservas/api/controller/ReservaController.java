@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reservas")
 @RequiredArgsConstructor
@@ -26,6 +28,28 @@ public class ReservaController {
         ReservaResponseDto response = reservaService.createReserva(usuario.getId(), dto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ReservaResponseDto>> getAllReservas(@AuthenticationPrincipal Usuario usuario) {
+        if("ADMIN".equals(usuario.getRol().name())){
+            return ResponseEntity.ok(reservaService.findAllReservas());
+        }
+        return ResponseEntity.ok(reservaService.findAllReservasByUsuarioId(usuario.getId()));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ReservaResponseDto> getReservaById(@PathVariable long id, @AuthenticationPrincipal Usuario usuario) {
+
+        ReservaResponseDto reserva = reservaService.findReserva(id);
+
+        if(!"ADMIN".equals(usuario.getRol().name()) && reserva.getUsuario().getId().equals(usuario.getId()) ){
+            return ResponseEntity.ok(reserva);
+        }
+
+        return ResponseEntity.ok(reserva);
+
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteReserva(@PathVariable long id, @AuthenticationPrincipal Usuario usuario) {

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class PagoService {
 
     public boolean procesarPago(){
-        System.out.println("procesando pago");
+        System.out.println(":::: procesando pago ::::::");
         return true;
     }
 

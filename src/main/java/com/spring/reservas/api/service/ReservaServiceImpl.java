@@ -79,7 +79,7 @@ public class ReservaServiceImpl implements ReservaService {
 
         if(pagoService.procesarPago()){
             reserva.setEstado(EstadoReserva.CONFIRMADA);
-            reserva.setEstadoPago(EstadoPago.APROVADO);
+            reserva.setEstadoPago(EstadoPago.APROBADO);
 
             Reserva resConf = reservaRepo.save(reserva);
             publisher.publishEvent(new ReservaConfirmadaEvent(resConf));

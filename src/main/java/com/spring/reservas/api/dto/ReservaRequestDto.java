@@ -2,6 +2,7 @@ package com.spring.reservas.api.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,11 +12,11 @@ import java.time.LocalDateTime;
 @Setter
 public class ReservaRequestDto {
 
-    @NotBlank
+    @NotNull(message = "El id del espacio no puede ser nulo")
     private Long idEspacio;
-    @NotBlank
+    @NotNull(message = "La fecha inicio no puede ser nula")
     private LocalDateTime fechaInicio;
-    @NotBlank
+    @NotNull(message = "La fecha final no puede ser nula")
     private LocalDateTime fechaFin;
 
 
