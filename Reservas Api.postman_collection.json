@@ -1,0 +1,423 @@
+{
+  "info": {
+    "_postman_id": "5c286a74-5bda-4768-9a19-9b993cbcdc8e",
+    "name": "Reservas Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3616190"
+  },
+  "item": [
+    {
+      "name": "GetAll Espacios",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/espacio",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "espacio"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Espacio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Tu Mejor espacio\",\r\n  \"tipo\": \"SALA_REUNIONES\",\r\n  \"capacidad\": 20,\r\n  \"ubicacion\": \"En la Luna\",\r\n  \"tarifaHora\": 95.50\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/espacio",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "espacio"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetById Espacio",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/espacio/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "espacio",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Put Espacio",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"JACUZZI\",\r\n  \"tipo\": \"OFICINA\",\r\n  \"capacidad\": 5,\r\n  \"ubicacion\": \"San MarKOS\",\r\n  \"tarifaHora\": 15.50\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/espacio/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "espacio",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Espacio",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/espacio/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "espacio",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Registrar Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\" : \"mario\",\r\n    \"apellido\" : \"melara\",\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\" : \"pasword123\",\r\n    \"rol\" : \"USER\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\" : \"pasword123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Reserva",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"idEspacio\" : 2,\r\n    \"fechaInicio\": \"2026-10-15T09:00:00\",\r\n    \"fechaFin\": \"2026-10-15T11:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/reservas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "reservas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Reservas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/reservas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "reservas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reserva By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/reservas/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "reservas",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reporte Espacios",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"start\" : \"2026-10-15T09:00:00\",\r\n    \"end\" : \"2026-10-17T09:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/reportes/espacios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "reportes",
+            "espacios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Reserva",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer "
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/reservas/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "reservas",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "bearer_token_0igp",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_1b1m",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_003s",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_1av5",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_04wg",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_12dh",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_02ts",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0ysw",
+      "secret": true
+    }
+  ]
+}
