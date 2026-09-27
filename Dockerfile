@@ -8,15 +8,11 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-
-# Usa una imagen base de Java 17
 FROM eclipse-temurin:17-jdk-alpine
-
-# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
 # Copia el jar generado por Maven
-COPY target/spring-reservas-api-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /spring-reservas-api-0.0.1-SNAPSHOT.jar app.jar
 
 # Expone el puerto de la aplicación
 EXPOSE 8080
