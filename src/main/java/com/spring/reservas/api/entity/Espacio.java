@@ -36,6 +36,10 @@ public class Espacio {
     @Column(nullable = false, length = 150)
     private String ubicacion;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private Boolean activo = true;
+
     @Column(name = "tarifa_hora", nullable = false, precision = 10, scale = 2)
     private BigDecimal tarifaHora;
 

@@ -68,6 +68,7 @@ public class EspacioServiceImpl implements EspacioService {
 
         Espacio espacio = repo.findById( id )
                 .orElseThrow(() -> new EntityNotFoundException("Espacio no encontrado"+id));
+        espacio.setActivo(false);
         repo.delete(espacio);
     }
 }

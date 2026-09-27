@@ -7,7 +7,9 @@ import com.spring.reservas.api.entity.Espacio;
 import com.spring.reservas.api.entity.Reserva;
 import com.spring.reservas.api.repository.EspacioRepository;
 import com.spring.reservas.api.repository.ReservaRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigDecimal;
@@ -29,6 +31,8 @@ public class ReporteService {
         this.reservaRepo = reservaRepo;
     }
 
+    @Transactional
+    @Cacheable(value = "reportes_espacios")
     public List<ReporteEspacioDto> getReportEspacios(LocalDateTime fechaInicio, LocalDateTime fechaFin ) {
 
 

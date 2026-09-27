@@ -89,6 +89,7 @@ public class ReservaServiceImpl implements ReservaService {
             publisher.publishEvent(new ReservaConfirmadaEvent(resConf));
             return ReservaMapper.mapToDto(resConf);
         }else{
+
             Reserva resConf = reservaRepo.save(reserva);
             return ReservaMapper.mapToDto(resConf);
         }
@@ -130,8 +131,6 @@ public class ReservaServiceImpl implements ReservaService {
 
         Reserva reserva = reservaRepo.findByIdWithAssociacion(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reserva no encontrada"+id));
-
-        System.out.println("reserva   :::::::: "+reserva.toString());
 
         // SÍ tiene permiso si es ADMIN O si es el dueño de la reserva
         boolean tienePermiso = "ADMIN".equals(usuario.getRol()) || reserva.getUsuario().getId().equals(usuario.getId());
