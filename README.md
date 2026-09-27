@@ -31,7 +31,7 @@ Las tareas secundarias se trasladaron a componentes independientes que actúan c
 
 ### REQUISITOS PREVIOS 
 
-tener Maven y Docker Desktop instalado
+tener Docker Desktop instalado
 
 ## Instalación y ejecución
 
@@ -42,12 +42,12 @@ cd <tu-repo>
 ```
  2. Una vez dentro de la carpeta del proyecto ejecutar
 ```bash
-mvn clean package -DskipTests
 docker-compose up --build
 ```
  3. Despues que al aplicacion este corriendo se puede visitar el siguiente sitio para ver la documentacion : 
     http://localhost:8080/swagger-ui.html
- 4. Observabilidad con Actuator en: http://localhost:8080/actuator/health
+ 4. Observabilidad con Actuator en: 
+    http://localhost:8080/actuator/health
 
 ---
 ### ¿ Que se pudiera hacer con mas tiempo ?
